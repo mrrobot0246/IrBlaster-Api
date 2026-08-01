@@ -1,0 +1,112 @@
+#include <Arduino.h>
+#include <IRremoteESP8266.h>
+#include <IRrecv.h>
+#include <IRutils.h>
+#include <IRsend.h>
+
+uint16_t IR_REC = 4;
+uint16_t IR_SEND = 16;
+IRsend irsend(IR_SEND);
+IRrecv irrecv(IR_REC);
+decode_results results;
+
+int SerialMess;
+
+
+
+void setup() {
+  Serial.begin(115200);
+  irrecv.enableIRIn(); 
+  irsend.begin();
+
+}
+
+
+
+
+void dump(decode_results *results) {
+
+  uint16_t count = results->rawlen;
+  if (results->decode_type == UNKNOWN) {
+    Serial.print("Unknown encoding: ");
+  } else if (results->decode_type == NEC) {
+    Serial.print("Decoded NEC: ");
+  } else if (results->decode_type == SONY) {
+    Serial.print("Decoded SONY: ");
+  } else if (results->decode_type == RC5) {
+    Serial.print("Decoded RC5: ");
+  } else if (results->decode_type == RC5X) {
+    Serial.print("Decoded RC5X: ");
+  } else if (results->decode_type == RC6) {
+    Serial.print("Decoded RC6: ");
+  } else if (results->decode_type == RCMM) {
+    Serial.print("Decoded RCMM: ");
+  } else if (results->decode_type == PANASONIC) {
+    Serial.print("Decoded PANASONIC - Address: ");
+    Serial.print(results->address, HEX);
+    Serial.print(" Value: ");
+  } else if (results->decode_type == LG) {
+    Serial.print("Decoded LG: ");
+  } else if (results->decode_type == JVC) {
+    Serial.print("Decoded JVC: ");
+  } else if (results->decode_type == AIWA_RC_T501) {
+    Serial.print("Decoded AIWA RC T501: ");
+  } else if (results->decode_type == WHYNTER) {
+    Serial.print("Decoded Whynter: ");
+  } else if (results->decode_type == NIKAI) {
+    Serial.print("Decoded Nikai: ");
+  }
+  serialPrintUint64(results->value, 16);
+  Serial.print(" (");
+  Serial.print(results->bits, DEC);
+  Serial.println(" bits)");
+  Serial.print("Raw (");
+  Serial.print(count, DEC);
+  Serial.print("): {");
+
+  for (uint16_t i = 1; i < count; i++) {
+    if (i % 100 == 0)
+      yield();  // Preemptive yield every 100th entry to feed the WDT.
+    if (i & 1) {
+      Serial.print(results->rawbuf[i] * kRawTick, DEC);
+    } else {
+      Serial.print(", ");
+      Serial.print(static_cast<uint32_t>(results->rawbuf[i] * kRawTick), DEC);
+    }
+  }
+  Serial.println("};");
+}
+
+
+
+
+
+
+void loop() {
+   if (Serial.available() > 0) {
+     SerialMess = Serial.read();
+
+     if (SerialMess == 'r')
+     {
+         Serial.println("Listening for IR signal...");
+         unsigned long startTime = millis();
+         while (millis() - startTime < 5000) {
+           if (irrecv.decode(&results)) {
+             dump(&results);
+             irrecv.resume();
+
+             delay(7000);
+
+             if (results.decode_type == NEC) {
+               irsend.sendNEC(results.value, results.bits);
+               Serial.println("Sent it back via NEC.");
+             } else {
+               Serial.println("Can't resend — protocol not NEC (add more later).");
+             }
+
+             break;
+           }
+         }
+     }
+   }
+}

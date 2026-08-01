@@ -1,0 +1,10 @@
+// include/config.h.example
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#define WIFI_SSID "YOUR_WIFI_SSID"
+#define WIFI_PASS "YOUR_WIFI_PASSWORD"
+#define API_BASE_URL "http://YOUR_COMPUTER_IP:8000"
+#define API_KEY "my_super_secret_api_key_123"
+
+#endif

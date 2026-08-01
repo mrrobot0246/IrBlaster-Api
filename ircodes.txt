@@ -1,0 +1,1 @@
+1,Synetech Power,NEC,0x3FFBF53C,network

@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# PlatformIO Build Directory & Credentials
+.pio/
+include/config.h
+config.h
