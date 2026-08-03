@@ -1,1 +1,2 @@
 1,Synetech Power,NEC,0x3FFBF53C,network
+2,volume,NEC,0x3FFBF5BC,network
