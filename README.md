@@ -1,6 +1,9 @@
 # IrBlaster-Api
 An API powered by FASTAPI and Python that functions as a live database for ESP32 Ir Blasters with both network and local (SD card) saving and reading functions using a serial monitor.
-
+### Libraries
++ IRremote (by Armin Joachimsmeyer)
++ ArduinoJson (by Benoit Blanchon)
+  
 ### Features
 + Read and decode IR remote signals(VS1838B receiver)
 + Store codes either locally (SD card) or over the network (FastAPI + persistent file storage)
