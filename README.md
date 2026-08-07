@@ -68,9 +68,9 @@ An API powered by FASTAPI and Python that functions as a live database for ESP32
 
 # My Setup
 
-![setup](./photos/setup.jpeg width="300")
-![Esp32](./photos/Esp32.jpeg width="300")
-![Ir_Blaster](./photos/IR.jpeg width="300")
+<img src="./photos/setup.jpeg" width="300">
+<img src="./photos/Esp32.jpeg" width="300">
+<img src="./photos/IR_Blaster_And_Receiver.jpeg" width="300">
 
 This is my setup as this is pretty easy to put everything together on a breadboard. I used a tft screen to get the Sd module setup.
 
