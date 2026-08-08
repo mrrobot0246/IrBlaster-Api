@@ -1,5 +1,5 @@
 # IrBlaster-Api
-An API powered by FASTAPI and Python that functions as a live database for ESP32 IR blasters with both network and local (SD card) saving and reading functions using a serial monitor. Also, it has each and every IR NEC code for the [Synetech Elite Taurus](https://synetechworld.com/en/pantallas-interactivas-educacion/taurus) interactive screen. 
+An API powered by FASTAPI and Python that functions as a live database for ESP32 IR blasters with both network and local (SD card) saving and reading functions using a serial monitor. Also, it has the most important IR NEC codes for the [Synetech Elite Taurus](https://synetechworld.com/en/pantallas-interactivas-educacion/taurus) interactive screen. 
 
 ### Libraries
 #### Python 
@@ -91,7 +91,7 @@ On first run, a new API key is generated automatically and printed to the consol
 
 ### IR Code Example Files
 
-Here are examples of both server-side and local-side IR code files. The local IR code file is this one: [ircodes_local.txt](ircodes_local.txt), and the Network IR Code file is this one: [ircodes.txt](ircodes.txt). These files include many types of IR codes, but especially they have all the [Synetech Elite Taurus](https://synetechworld.com/en/pantallas-interactivas-educacion/taurus) NEC codes.
+Here are examples of both server-side and local-side IR code files. The local IR code file is this one: [ircodes_local.txt](ircodes_local.txt), and the Network IR Code file is this one: [ircodes.txt](ircodes.txt). These files include many types of IR codes, but especially they have all the important and most used [Synetech Elite Taurus](https://synetechworld.com/en/pantallas-interactivas-educacion/taurus) NEC codes.
 
 ### API Endpoints
 |Method |Endpoint     |Description                                                          |
